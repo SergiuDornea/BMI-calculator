@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'widgets.dart';
 
 const bottomContainerHeight = 80.0;
 
@@ -16,6 +15,8 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   double height = 170;
+  double weight = 70;
+  int age = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -34,18 +35,16 @@ class _InputPageState extends State<InputPage> {
                     onTap: () {},
                     child: const MyContainer(
                       childWidget:
-                          GenderChild(iconData: Icons.male, label: "MALE"),
+                          GenderChild(iconData: Icons.male, label: 'MALE'),
                     ),
                   ),
                 ),
                 Expanded(
                     child: GestureDetector(
-                  onTap: () {
-                    print("hit");
-                  },
+                  onTap: () {},
                   child: const MyContainer(
                     childWidget:
-                        GenderChild(iconData: Icons.female, label: "FEMALE"),
+                        GenderChild(iconData: Icons.female, label: 'FEMALE'),
                   ),
                 ))
               ],
@@ -57,7 +56,7 @@ class _InputPageState extends State<InputPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Center(
-                  child: CustomText(label: "HEIGHT"),
+                  child: CustomText(label: 'HEIGHT'),
                 ),
                 const SizedBox(height: 8.0),
                 Text(
@@ -78,11 +77,43 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           )),
-          const Expanded(
+          Expanded(
             child: Row(
               children: [
-                Expanded(child: MyContainer()),
-                Expanded(child: MyContainer())
+                Expanded(
+                    child: MyContainer(
+                  childWidget: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const CustomText(label: 'WEIGHT'),
+                      Text(
+                        '$weight kg',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
+                      IconButtonsRow(
+                        addPressed: () {},
+                        minusPressed: () {},
+                      )
+                    ],
+                  ),
+                )),
+                Expanded(
+                    child: MyContainer(
+                  childWidget: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const CustomText(label: 'AGE'),
+                      Text(
+                        '$age',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
+                      IconButtonsRow(
+                        addPressed: () {},
+                        minusPressed: () {},
+                      )
+                    ],
+                  ),
+                ))
               ],
             ),
           ),
@@ -91,68 +122,14 @@ class _InputPageState extends State<InputPage> {
             margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
             height: bottomContainerHeight,
+            child: Center(
+              child: Text(
+                "CALCULATE YOUR BMI",
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ),
           )
         ],
-      ),
-    );
-  }
-}
-
-class MyContainer extends StatelessWidget {
-  const MyContainer({this.color, this.childWidget});
-
-  final Color? color;
-  final Widget? childWidget;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-          color: color ?? Theme.of(context).colorScheme.surfaceBright,
-          borderRadius: BorderRadius.circular(20.0)),
-      child: childWidget,
-    );
-  }
-}
-
-class GenderChild extends StatelessWidget {
-  final IconData iconData;
-  final String label;
-
-  const GenderChild({required this.iconData, required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(
-          iconData,
-          size: MediaQuery.of(context).size.width * 0.2,
-        ),
-        const SizedBox(height: 8.0),
-        CustomText(label: label),
-      ],
-    );
-  }
-}
-
-class CustomText extends StatelessWidget {
-  const CustomText({
-    super.key,
-    required this.label,
-  });
-
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      label,
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: MediaQuery.of(context).size.width * 0.08,
       ),
     );
   }
