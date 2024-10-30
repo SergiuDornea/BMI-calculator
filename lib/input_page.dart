@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -13,6 +15,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  double height = 170;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,24 +26,58 @@ class _InputPageState extends State<InputPage> {
       ),
       body: Column(
         children: [
-          const Expanded(
+          Expanded(
             child: Row(
               children: [
                 Expanded(
-                  child: MyContainer(
-                    childWidget:
-                        GenderChild(iconData: Icons.male, label: "MALE"),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: const MyContainer(
+                      childWidget:
+                          GenderChild(iconData: Icons.male, label: "MALE"),
+                    ),
                   ),
                 ),
                 Expanded(
-                    child: MyContainer(
-                  childWidget:
-                      GenderChild(iconData: Icons.female, label: "FEMALE"),
+                    child: GestureDetector(
+                  onTap: () {
+                    print("hit");
+                  },
+                  child: const MyContainer(
+                    childWidget:
+                        GenderChild(iconData: Icons.female, label: "FEMALE"),
+                  ),
                 ))
               ],
             ),
           ),
-          const Expanded(child: MyContainer()),
+          Expanded(
+              child: MyContainer(
+            childWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Center(
+                  child: CustomText(label: "HEIGHT"),
+                ),
+                const SizedBox(height: 8.0),
+                Text(
+                  '${height.toStringAsFixed(0)} cm',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                const SizedBox(height: 8.0),
+                Slider(
+                    value: height,
+                    min: 100,
+                    max: 220,
+                    label: height.toStringAsFixed(0),
+                    onChanged: (double newHeight) {
+                      setState(() {
+                        height = newHeight;
+                      });
+                    })
+              ],
+            ),
+          )),
           const Expanded(
             child: Row(
               children: [
@@ -93,15 +131,29 @@ class GenderChild extends StatelessWidget {
           iconData,
           size: MediaQuery.of(context).size.width * 0.2,
         ),
-        SizedBox(height: 8.0),
-        Text(
-          label,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: MediaQuery.of(context).size.width * 0.08,
-          ),
-        ),
+        const SizedBox(height: 8.0),
+        CustomText(label: label),
       ],
+    );
+  }
+}
+
+class CustomText extends StatelessWidget {
+  const CustomText({
+    super.key,
+    required this.label,
+  });
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      label,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: MediaQuery.of(context).size.width * 0.08,
+      ),
     );
   }
 }
