@@ -110,8 +110,20 @@ class _InputPageState extends State<InputPage> {
                         style: Theme.of(context).textTheme.headlineMedium,
                       ),
                       IconButtonsRow(
-                        addPressed: () {},
-                        minusPressed: () {},
+                        addPressed: () {
+                          setState(() {
+                            if (weight > 20 && weight < 500) {
+                              weight++;
+                            }
+                          });
+                        },
+                        minusPressed: () {
+                          setState(() {
+                            if (weight > 0 && weight < 500) {
+                              weight--;
+                            }
+                          });
+                        },
                       )
                     ],
                   ),
@@ -127,8 +139,20 @@ class _InputPageState extends State<InputPage> {
                         style: Theme.of(context).textTheme.headlineMedium,
                       ),
                       IconButtonsRow(
-                        addPressed: () {},
-                        minusPressed: () {},
+                        addPressed: () {
+                          setState(() {
+                            if (age > 0 && age < 120) {
+                              age++;
+                            }
+                          });
+                        },
+                        minusPressed: () {
+                          setState(() {
+                            if (age > 0 && age < 120) {
+                              age--;
+                            }
+                          });
+                        },
                       )
                     ],
                   ),
