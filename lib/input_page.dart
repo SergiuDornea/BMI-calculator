@@ -17,6 +17,15 @@ class _InputPageState extends State<InputPage> {
   double height = 170;
   double weight = 70;
   int age = 20;
+  bool selectedMale = true;
+
+  Color updateColor(bool selectedGender) {
+    if (selectedGender == selectedMale) {
+      return Theme.of(context).colorScheme.primaryContainer;
+    } else {
+      return Theme.of(context).colorScheme.surfaceBright;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +41,13 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: GestureDetector(
-                    onTap: () {},
-                    child: const MyContainer(
+                    onTap: () {
+                      setState(() {
+                        selectedMale = true;
+                      });
+                    },
+                    child: MyContainer(
+                      color: updateColor(true),
                       childWidget:
                           GenderChild(iconData: Icons.male, label: 'MALE'),
                     ),
@@ -41,8 +55,13 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                     child: GestureDetector(
-                  onTap: () {},
-                  child: const MyContainer(
+                  onTap: () {
+                    setState(() {
+                      selectedMale = false;
+                    });
+                  },
+                  child: MyContainer(
+                    color: updateColor(false),
                     childWidget:
                         GenderChild(iconData: Icons.female, label: 'FEMALE'),
                   ),
