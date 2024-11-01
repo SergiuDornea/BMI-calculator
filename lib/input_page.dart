@@ -87,6 +87,8 @@ class _InputPageState extends State<InputPage> {
                     value: height,
                     min: 100,
                     max: 220,
+                    activeColor: Theme.of(context).colorScheme.tertiaryContainer,
+                    inactiveColor: Theme.of(context).colorScheme.inversePrimary,
                     label: height.toStringAsFixed(0),
                     onChanged: (double newHeight) {
                       setState(() {
