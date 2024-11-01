@@ -83,18 +83,24 @@ class _InputPageState extends State<InputPage> {
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const SizedBox(height: 8.0),
-                Slider(
-                    value: height,
-                    min: 100,
-                    max: 220,
-                    activeColor: Theme.of(context).colorScheme.tertiaryContainer,
-                    inactiveColor: Theme.of(context).colorScheme.inversePrimary,
-                    label: height.toStringAsFixed(0),
-                    onChanged: (double newHeight) {
-                      setState(() {
-                        height = newHeight;
-                      });
-                    })
+                SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                    thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                    overlayShape: const RoundSliderOverlayShape(overlayRadius: 25.0),
+                  ),
+                  child: Slider(
+                      value: height,
+                      min: 100,
+                      max: 220,
+                      activeColor: Theme.of(context).colorScheme.tertiaryContainer,
+                      inactiveColor: Theme.of(context).colorScheme.inversePrimary,
+                      label: height.toStringAsFixed(0),
+                      onChanged: (double newHeight) {
+                        setState(() {
+                          height = newHeight;
+                        });
+                      }),
+                )
               ],
             ),
           )),
