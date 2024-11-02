@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'widgets.dart';
+import 'results_page.dart';
 
 const bottomContainerHeight = 80.0;
 
@@ -85,15 +86,19 @@ class _InputPageState extends State<InputPage> {
                 const SizedBox(height: 8.0),
                 SliderTheme(
                   data: SliderTheme.of(context).copyWith(
-                    thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 15.0),
-                    overlayShape: const RoundSliderOverlayShape(overlayRadius: 25.0),
+                    thumbShape:
+                        const RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                    overlayShape:
+                        const RoundSliderOverlayShape(overlayRadius: 25.0),
                   ),
                   child: Slider(
                       value: height,
                       min: 100,
                       max: 220,
-                      activeColor: Theme.of(context).colorScheme.tertiaryContainer,
-                      inactiveColor: Theme.of(context).colorScheme.inversePrimary,
+                      activeColor:
+                          Theme.of(context).colorScheme.tertiaryContainer,
+                      inactiveColor:
+                          Theme.of(context).colorScheme.inversePrimary,
                       label: height.toStringAsFixed(0),
                       onChanged: (double newHeight) {
                         setState(() {
@@ -168,15 +173,25 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: Theme.of(context).colorScheme.tertiaryContainer,
-            margin: EdgeInsets.only(top: 10.0),
-            width: double.infinity,
-            height: bottomContainerHeight,
-            child: Center(
-              child: Text(
-                "CALCULATE YOUR BMI",
-                style: Theme.of(context).textTheme.headlineMedium,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultsPage(),
+                ),
+              );
+            },
+            child: Container(
+              color: Theme.of(context).colorScheme.tertiaryContainer,
+              margin: EdgeInsets.only(top: 10.0),
+              width: double.infinity,
+              height: bottomContainerHeight,
+              child: Center(
+                child: Text(
+                  "CALCULATE YOUR BMI",
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
               ),
             ),
           )
