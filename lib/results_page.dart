@@ -21,9 +21,32 @@ class ResultsPage extends StatelessWidget {
             child: MyContainer(
               childWidget: SizedBox.expand(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text('OVERWEIGHT')
+                    SizedBox(height: 60.0),
+                    Text(
+                      'OVERWEIGHT',
+                      style: TextStyle(
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green),
+                    ),
+                    SizedBox(height: 60.0),
+                    Text(
+                      '28.4',
+                      style: TextStyle(
+                        fontSize: 70.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 60.0),
+                    Text(
+                      'You are fat, go to the gym.',
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 60.0),
                   ],
                 ),
               ),
