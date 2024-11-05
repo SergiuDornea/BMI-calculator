@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import '../components/my_container.dart';
 import 'input_page.dart';
-import 'widgets.dart';
 
 class ResultsPage extends StatelessWidget {
   @override

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'widgets.dart';
+import '../components/custom_text.dart';
+import '../components/icon_button_row.dart';
+import '../components/my_container.dart';
 import 'results_page.dart';
 
 const bottomContainerHeight = 80.0;
