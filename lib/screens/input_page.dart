@@ -1,3 +1,4 @@
+import 'package:bmi/calculator.dart';
 import 'package:flutter/material.dart';
 import '../components/custom_text.dart';
 import '../components/icon_button_row.dart';
@@ -176,10 +177,16 @@ class _InputPageState extends State<InputPage> {
           ),
           GestureDetector(
             onTap: () {
+              Calculator calculator =
+                  Calculator(height.toInt(), weight.toInt());
+              calculator.calculateBMI();
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ResultsPage(),
+                  builder: (context) => ResultsPage(
+                      bmiResult: calculator.getResult(),
+                      bmi: calculator.getBmi(),
+                      bmiInterpretation: calculator.getInterpretation()),
                 ),
               );
             },

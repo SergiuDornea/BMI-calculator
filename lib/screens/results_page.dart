@@ -3,6 +3,15 @@ import '../components/my_container.dart';
 import 'input_page.dart';
 
 class ResultsPage extends StatelessWidget {
+  final String bmiResult;
+  final String bmi;
+  final String bmiInterpretation;
+
+  ResultsPage(
+      {required this.bmi,
+      required this.bmiResult,
+      required this.bmiInterpretation});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,36 +26,39 @@ class ResultsPage extends StatelessWidget {
             'Your Result',
             style: TextStyle(fontSize: 50.0),
           ),
-          const Expanded(
+          Expanded(
             child: MyContainer(
               childWidget: SizedBox.expand(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 60.0),
+                    const SizedBox(height: 60.0),
                     Text(
-                      'OVERWEIGHT',
-                      style: TextStyle(
+                      bmiResult,
+                      style: const TextStyle(
                           fontSize: 30.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.green),
                     ),
-                    SizedBox(height: 60.0),
+                    const SizedBox(height: 60.0),
                     Text(
-                      '28.4',
-                      style: TextStyle(
+                      bmi,
+                      style: const TextStyle(
                         fontSize: 70.0,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     SizedBox(height: 60.0),
-                    Text(
-                      'You are fat, go to the gym.',
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        bmiInterpretation,
+                        style: const TextStyle(
+                            fontSize: 20.0, fontWeight: FontWeight.bold),
+                      ),
                     ),
-                    SizedBox(height: 60.0),
+                    const SizedBox(height: 60.0),
                   ],
                 ),
               ),
